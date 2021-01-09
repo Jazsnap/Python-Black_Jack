@@ -2,7 +2,7 @@ import random
 from IPython.display import clear_output
 suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
 ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
-values = {'Ace':11, 'Ace_lo':1, 'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 'Nine':9, 'Ten':10, 'Jack':11, 'Queen':12, 'King':13, 'Ace_hi':14}
+values = {'Ace':11, 'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 'Nine':9, 'Ten':10, 'Jack':11, 'Queen':12, 'King':13}
 player_hand = []
 dealer_hand = []
 
@@ -53,15 +53,14 @@ class Hand:
     
     def add_card(self, card):
         
-        new_card = Deck.deal()
         self.value += card.value
         
-        if new_card.rank == 'Ace':
+        if card.rank == 'Ace':
             self.aces += 1
         else:
             pass
         
-        self.cards.append(new_card)
+        self.cards.append(card)
            
     def adjust_for_ace(self):
         
@@ -73,6 +72,8 @@ class Hand:
                     self.aces -= 1
                 else:
                     self.aces -= 1
-                
-pack = Deck()
-pack.shuffle()
+                    
+    def show_hand(self):
+        
+        for my_card in self.cards:
+            print(my_card)
