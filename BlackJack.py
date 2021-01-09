@@ -2,7 +2,7 @@ import random
 from IPython.display import clear_output
 suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
 ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
-values = {'Ace':11, 'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 'Nine':9, 'Ten':10, 'Jack':11, 'Queen':12, 'King':13}
+values = {'Ace':11, 'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 'Nine':9, 'Ten':10, 'Jack':10, 'Queen':10, 'King':10}
 player_hand = []
 dealer_hand = []
 
@@ -64,14 +64,15 @@ class Hand:
            
     def adjust_for_ace(self):
         
-        while self.aces != 0:
-            for test_card in self.cards:
-                if self.value > 21:
-                    test_card.value = 1
-                    self.value -= 10
-                    self.aces -= 1
-                else:
-                    self.aces -= 1
+        for ace_check in self.cards:
+            if ace_check.rank != 'Ace':
+                continue
+            elif ace_check.rank == 'Ace' and self.value > 11:
+                ace_check.value = 1
+                self.value -= 10
+                self.aces -= 1
+            else:
+                self.aces -= 1
                     
     def show_hand(self):
         
