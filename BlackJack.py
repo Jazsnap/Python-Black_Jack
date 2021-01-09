@@ -36,6 +36,11 @@ class Deck:
         
         new_card = self.all_cards.pop()
         return new_card
+    
+    def show_deck(self):
+        
+        for each_card in self.all_cards:
+            print(each_card)
 
 
 class Hand:
@@ -49,6 +54,7 @@ class Hand:
     def add_card(self, card):
         
         new_card = Deck.deal()
+        self.value += card.value
         
         if new_card.rank == 'Ace':
             self.aces += 1
@@ -59,21 +65,14 @@ class Hand:
            
     def adjust_for_ace(self):
         
-        if self.aces != 0:
-            for aces in self.cards:
-                try:
-                    choice = input(f"Ace high or low? for {self.card}: ")
-                    if choice not in ["high","low"]:
-                        clear_output()
-                        continue
-                    elif choice == "high":
-                        self.value = values['Ace_hi']
-                        print(f"{self.card} has value of {self.value}")
-                    elif choice == "low":
-                        self.value = values['Ace_lo']
-                        print(f"{self.card} has value of {self.value}")
-                except:
-                    print("Only 'High' or 'low' allowed")
-                    
+        while self.aces != 0:
+            for test_card in self.cards:
+                if self.value > 21:
+                    test_card.value = 1
+                    self.value -= 10
+                    self.aces -= 1
+                else:
+                    self.aces -= 1
+                
 pack = Deck()
 pack.shuffle()
