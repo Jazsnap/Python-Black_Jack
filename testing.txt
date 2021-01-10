@@ -1,0 +1,17 @@
+new_deck = Deck()
+new_deck.shuffle()
+new_card = new_deck.deal()
+new_player = Player('Jason')
+new_card = new_deck.deal()
+new_player.player_hand.add_card(new_card)
+new_player.player_hand.show_hand()
+new_player.player_hand.value
+
+new_card = new_deck.deal()
+new_player.player_hand.add_card(new_card)
+new_player.player_hand.show_hand()
+new_player.player_hand.value
+
+jason_chip = Chips(3, 10)
+new_player.add_chips(jason_chip)
+print(jason_chip)
