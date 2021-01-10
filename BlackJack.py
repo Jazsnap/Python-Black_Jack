@@ -3,7 +3,6 @@ from IPython.display import clear_output
 suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
 ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
 values = {'Ace':11, 'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 'Nine':9, 'Ten':10, 'Jack':10, 'Queen':10, 'King':10}
-player_hand = []
 dealer_hand = []
 
 class Card:
@@ -67,7 +66,7 @@ class Hand:
         for ace_check in self.cards:
             if ace_check.rank != 'Ace':
                 continue
-            elif ace_check.rank == 'Ace' and self.value > 11:
+            elif ace_check.rank == 'Ace' and self.value > 21:
                 ace_check.value = 1
                 self.value -= 10
                 self.aces -= 1
@@ -78,3 +77,32 @@ class Hand:
         
         for my_card in self.cards:
             print(my_card)
+            
+
+class Chips:
+    
+    def __init__(self, value, amount):
+        
+        self.value = value
+        self.amount = amount
+        
+    def __str__(self):
+        
+        return str(self.amount) + " chips of value " + str(self.value)
+
+class Player:
+    
+    def __init__(self, name):
+        
+        self.name = name
+        self.player_hand = Hand()
+        self.chips = []
+        
+    def add_chips(self, chip):
+        
+        self.chips.append(chip)
+                
+    def show_chips(self):
+        
+        for chips in self.chips:
+            print(chips)
