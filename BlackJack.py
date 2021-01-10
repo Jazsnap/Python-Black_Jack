@@ -3,7 +3,6 @@ from IPython.display import clear_output
 suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
 ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
 values = {'Ace':11, 'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7, 'Eight':8, 'Nine':9, 'Ten':10, 'Jack':10, 'Queen':10, 'King':10}
-dealer_hand = []
 
 class Card:
     
@@ -56,22 +55,14 @@ class Hand:
         
         if card.rank == 'Ace':
             self.aces += 1
-        else:
-            pass
         
         self.cards.append(card)
            
     def adjust_for_ace(self):
         
-        for ace_check in self.cards:
-            if ace_check.rank != 'Ace':
-                continue
-            elif ace_check.rank == 'Ace' and self.value > 21:
-                ace_check.value = 1
-                self.value -= 10
-                self.aces -= 1
-            else:
-                self.aces -= 1
+        while self.value > 21 and self.aces:
+            self.aces -= 1
+            self.value -= 10
                     
     def show_hand(self):
         
@@ -81,28 +72,57 @@ class Hand:
 
 class Chips:
     
-    def __init__(self, value, amount):
+    def __init__(self):
         
-        self.value = value
-        self.amount = amount
+        self.total = 100
+        self.bet = 0
         
-    def __str__(self):
+    def win_bet(self):
         
-        return str(self.amount) + " chips of value " + str(self.value)
+        self.total += self.bet
+        
+    def lose_bet(self):
+        
+        self.total -= self.bet
 
-class Player:
+        
+def take_bet():
     
-    def __init__(self, name):
-        
-        self.name = name
-        self.player_hand = Hand()
-        self.chips = []
-        
-    def add_chips(self, chip):
-        
-        self.chips.append(chip)
-                
-    def show_chips(self):
-        
-        for chips in self.chips:
-            print(chips)
+    pass
+    
+def display_hand(player):
+    
+    pass
+
+def hit(deck,hand):
+    
+    pass
+
+def hit_or_stand(deck,hand):
+    
+    global playing  # to control an upcoming while loop
+    
+    pass
+
+def show_some(player,dealer):
+    
+    pass
+    
+def show_all(player,dealer):
+    
+    pass
+
+def player_busts():
+    pass
+
+def player_wins():
+    pass
+
+def dealer_busts():
+    pass
+    
+def dealer_wins():
+    pass
+    
+def push():
+    pass
