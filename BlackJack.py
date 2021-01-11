@@ -86,9 +86,19 @@ class Chips:
         self.total -= self.bet
 
         
-def take_bet():
+def take_bet(chips):
     
-    pass
+    while True:
+        
+        try:
+            chips.bet = int(input(f"Enter your bet amount: "))
+        except:
+            print("Something went wrong, invalid entry!")
+        else:  
+            if chips.bet > chips.total:
+                print("You don't have enough chips")
+            else:
+                break
     
 def display_hand(player):
     
@@ -96,7 +106,7 @@ def display_hand(player):
 
 def hit(deck,hand):
     
-    pass
+    hand.add_card(deck.deal())
 
 def hit_or_stand(deck,hand):
     
