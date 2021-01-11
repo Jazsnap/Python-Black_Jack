@@ -107,12 +107,28 @@ def display_hand(player):
 def hit(deck,hand):
     
     hand.add_card(deck.deal())
+    hand.adjust_for_ace()
 
 def hit_or_stand(deck,hand):
     
     global playing  # to control an upcoming while loop
     
-    pass
+    while True:
+        
+        choice = input("Please choose hit or stand 'h' or 's': ")
+        
+        if choice[0].lower() == 'h':
+            hit(deck, hand)
+            
+        elif choice[0].lower() == 's':
+            print("Player stands, now dealers turn")
+            playing = False
+            
+        else:
+            print("Incorrect entry, please try again")
+            continue
+            
+        break
 
 def show_some(player,dealer):
     
